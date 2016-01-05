@@ -21,22 +21,22 @@ start(_StartType, _StartArgs) ->
 stop(_State) ->
     ok.
 
-compute_until(_number) ->
-    [{Number, compute(Number)} || Number <- lists:seq(0, _number)].
+compute_until(Max) ->
+    [{Number, compute(Number)} || Number <- lists:seq(0, Max)].
 
-print_until(_number) ->
-    FizzBuzz = compute_until(_number),
+print_until(Max) ->
+    FizzBuzz = compute_until(Max),
     lists:map(fun(X) ->  io:format("~p is ~p ~n", tuple_to_list(X)) end,FizzBuzz),
     ok.
 
-compute(_number) when _number rem 15 =:= 0 ->
+compute(Number) when Number rem 15 =:= 0 ->
     "FizzBuzz";
-compute(_number) when _number rem 5 =:= 0 ->
+compute(Number) when Number rem 5 =:= 0 ->
     "Buzz";
-compute(_number) when _number rem 3 =:= 0 ->
+compute(Number) when Number rem 3 =:= 0 ->
     "Fizz";
-compute(_number) ->
-    integer_to_list(_number).
+compute(Number) ->
+    integer_to_list(Number).
 
 -ifdef(TEST).
 
